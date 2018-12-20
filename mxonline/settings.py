@@ -37,7 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users'
 ]
+
+#重载userprofile
+AUTH_USER_MODEL = 'users.UserProfile'
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -80,7 +86,12 @@ DATABASES = {
         'NAME': 'mxonline',
         'USER':'root',
         'PASSWORD':'',
-        'HOST':'127.0.0.1'
+        'HOST':'127.0.0.1',
+        'PORT':'3306',
+        'OPTIONS':{
+            'init_command':"SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset':'utf8mb4'
+        }
     }
 }
 
