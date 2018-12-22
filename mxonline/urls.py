@@ -15,8 +15,12 @@ Including another URLconf
 """
 #from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView
 import xadmin
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
+
+    #index作为静态首页文件
+    path('', TemplateView.as_view(template_name='index.html'), name='index')
 ]
