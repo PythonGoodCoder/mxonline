@@ -22,5 +22,6 @@ urlpatterns = [
     path('xadmin/', xadmin.site.urls),
 
     #index作为静态首页文件
-    path('', TemplateView.as_view(template_name='index.html'), name='index')
+    path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('login/', TemplateView.as_view(template_name='login.html'), name='login')
 ]
