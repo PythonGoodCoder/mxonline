@@ -18,10 +18,16 @@ from django.urls import path
 from django.views.generic import TemplateView
 import xadmin
 
+#基于函数登录的导入
+#from users.views import user_login
+from users.views import LoginView
+
+
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
-
     #index作为静态首页文件
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
-    path('login/', TemplateView.as_view(template_name='login.html'), name='login')
+    #基于函数的用户登录url
+    #path('login/', user_login, name='login')
+    path('login/', LoginView.as_view(), name='login')
 ]
