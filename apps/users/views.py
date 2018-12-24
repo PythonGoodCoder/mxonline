@@ -26,7 +26,9 @@ class CustomBackend(ModelBackend):
 #基于类的用户的登录
 class LoginView(View):
     def get(self, request):
-        return render(request, 'login.html', {})  #未登录则返回登录界面
+        login_form = LoginForm()
+        return render(request, 'login.html', {'login_form': login_form})  #未登录则返回登录界面
+
     def post(self, request):
         login_form =LoginForm(request.POST)   # model form 验证
         if login_form.is_valid():
