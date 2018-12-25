@@ -40,9 +40,9 @@ class LoginView(View):
                 login(request, user) #验证结果不为空，则登录成功
                 return render(request, 'index.html', {})
             else:
-                return render(request, 'login.html', {'msg': '用户名或密码错误！'})
+                return render(request, 'login.html', {'msg': '用户名或密码错误！', 'login_form': login_form})
         else:
-            return render(request, 'login.html', {'msg': '用户名或密码错误！'})
+            return render(request, 'login.html', {'msg': '用户名或密码错误！', 'login_form': login_form})
 
 
 #基于函数的用户登录
@@ -58,7 +58,7 @@ class LoginView(View):
 #             return render(request, 'login.html',{'msg':'用户名或密码错误！'})
 #     elif request.method == 'GET':
 #         return render(request, 'login.html', {})
-
+#注册页面的view处理
 class RegisterView(View):
     def get(self, request):
         register_form = RegisterForm()
@@ -77,6 +77,8 @@ class RegisterView(View):
             #发送激活链接
             send_register_email(user_name, 'register')
             pass
+        else:
+            return render(request, 'register.html', {'msg': '信息填写有误！', 'register_form':register_form})
 
 
 
