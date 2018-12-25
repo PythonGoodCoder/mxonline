@@ -76,7 +76,7 @@ class RegisterView(View):
             user_profile.save()
             #发送激活链接
             send_register_email(user_name, 'register')
-            pass
+            return render(request, 'login.html')
         else:
             return render(request, 'register.html', {'msg': '信息填写有误！', 'register_form':register_form})
 
