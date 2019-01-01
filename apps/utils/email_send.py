@@ -8,8 +8,8 @@ from users.models import EmailVerifyRecord
 from mxonline.settings import EMAIL_FROM
 
 
-#生成随机数
-def random_str(random_length = 8):
+# 生成随机数
+def random_str(random_length=8):
     str = ''
     chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789'
     length = len(chars) - 1
@@ -19,15 +19,15 @@ def random_str(random_length = 8):
     return str
 
 
-#保存邮件到数据库中
-def send_register_email(email, send_type = 'register'):
+# 保存邮件到数据库中
+def send_register_email(email, send_type='register'):
     email_record = EmailVerifyRecord()
     code = random_str(16)
     email_record.code = code
     email_record.email = email
     email_record.send_type = send_type
     email_record.save()
-    #完成发送信息保存到数据库中
+    # 完成发送信息保存到数据库中
     email_title = ''
     email_body = ''
     if send_type == 'register':
