@@ -20,7 +20,7 @@ import xadmin
 
 # 基于函数登录的导入
 # from users.views import user_login
-from users.views import LoginView, RegisterView, ActiveUserView, ForgetPwdView
+from users.views import LoginView, RegisterView, ActiveUserView, ForgetPwdView, ResetView, ModifyPwdView
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
@@ -34,5 +34,6 @@ urlpatterns = [
     path('captcha/', include('captcha.urls')),
     path('active/<active_code>/', ActiveUserView.as_view(), name='user_active'),
     path('forget/', ForgetPwdView.as_view(), name='forget_pwd'),
-    path('reset/<reset_code>/', ActiveUserView.as_view(), name='user_active'),
+    path('reset/<active_code>/', ResetView.as_view(), name='reset_pwd'),
+    path('modify_pwd', ModifyPwdView.as_view(), name='modify_pwd')
 ]
