@@ -1,6 +1,7 @@
 # -*- encoding:utf-8 -*-
 from django.shortcuts import render
 from django.views.generic import View
+from django.
 
 from .models import CourseOrg, CityDict
 
@@ -16,8 +17,16 @@ class OrgView(View):
         org_nums = all_orgs.count()
         # 取出城市
         all_citys = CityDict.objects.all()
+
+        # 分页功能
+        try:
+            page = request.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+            p = Paginator(all_orgs, request=request)
+            orgs = p.page(page)
         return render(request, 'org-list.html', {
-            'all_orgs': all_orgs,
+            'all_orgs': orgs,
             'all_citys': all_citys,
             'org_nums': org_nums
         })
