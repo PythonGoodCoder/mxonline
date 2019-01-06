@@ -14,26 +14,35 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 # from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, re_path, include
 from django.views.generic import TemplateView
 import xadmin
+from django.views.static import serve
+
 
 # 基于函数登录的导入
 # from users.views import user_login
 from users.views import LoginView, RegisterView, ActiveUserView, ForgetPwdView, ResetView, ModifyPwdView
+from organization.views import OrgView
+from mxonline.settings import MEDIA_ROOT
+
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     # index作为静态首页文件
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
     path('index/', TemplateView.as_view(template_name='index.html'), name='index'),
-    # 基于函数的用户登录url
-    # path('login/', user_login, name = 'login'),
     path('login/', LoginView.as_view(), name='login'),
     path('register/', RegisterView.as_view(), name='register'),
     path('captcha/', include('captcha.urls')),
     path('active/<active_code>/', ActiveUserView.as_view(), name='user_active'),
     path('forget/', ForgetPwdView.as_view(), name='forget_pwd'),
     path('reset/<active_code>/', ResetView.as_view(), name='reset_pwd'),
-    path('modify_pwd', ModifyPwdView.as_view(), name='modify_pwd')
+    path('modify_pwd/', ModifyPwdView.as_view(), name='modify_pwd'),
+
+    # 课程机构首页
+    path('org_list/', OrgView.as_view(), name='org_list'),
+
+    # 配置上传文件的访问处理函数
+    re_path('media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
 ]

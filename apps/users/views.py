@@ -51,21 +51,6 @@ class LoginView(View):
             return render(request, 'login.html', {'msg': '用户名或密码错误！', 'login_form': login_form})
 
 
-# 基于函数的用户登录
-# def user_login(request):
-#     if request.method == 'POST':
-#         user_name =request.POST.get('username', '')
-#         pass_word = request.POST.get('password', '')
-#         user = authenticate(username = user_name, password = pass_word)
-#         if user is not None:
-#             login(request, user)
-#             return render(request, 'index.html', {})
-#         else:
-#             return render(request, 'login.html',{'msg':'用户名或密码错误！'})
-#     elif request.method == 'GET':
-#         return render(request, 'login.html', {})
-
-
 # 注册页面
 class RegisterView(View):
     def get(self, request):
