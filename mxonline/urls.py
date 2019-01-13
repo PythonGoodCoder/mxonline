@@ -19,11 +19,7 @@ from django.views.generic import TemplateView
 import xadmin
 from django.views.static import serve
 
-
-# 基于函数登录的导入
-# from users.views import user_login
 from users.views import LoginView, RegisterView, ActiveUserView, ForgetPwdView, ResetView, ModifyPwdView
-from organization.views import OrgView
 from mxonline.settings import MEDIA_ROOT
 
 
@@ -40,8 +36,8 @@ urlpatterns = [
     path('reset/<active_code>/', ResetView.as_view(), name='reset_pwd'),
     path('modify_pwd/', ModifyPwdView.as_view(), name='modify_pwd'),
 
-    # 课程机构首页
-    path('org_list/', OrgView.as_view(), name='org_list'),
+    # 课程机构url配置
+    path('org/', include('organization.urls', namespace='org')),
 
     # 配置上传文件的访问处理函数
     re_path('media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
