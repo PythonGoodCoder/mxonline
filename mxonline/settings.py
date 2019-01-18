@@ -159,7 +159,6 @@ EMAIL_HOST_USER = '951038699@qq.com'
 EMAIL_HOST_PASSWORD = 'nwexwjzvoqnkbfhe'
 EMAIL_USE_TLS = False
 EMAIL_FROM = '951038699@qq.com'
-
 # 图片上传的路径
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
