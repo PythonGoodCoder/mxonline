@@ -87,6 +87,19 @@ class OrgHomeView(View):
         return render(request, 'org-detail-homepage.html', {
             'all_courses': all_courses,
             'all_teacher': all_teachers,
-            'course_org': course_org,
+            'course_org': course_org
+        })
 
+
+class OrgCourseView(View):
+    """
+    机构课程列表页
+    """
+
+    def get(self, request, org_id):
+        course_org = CourseOrg.objects.get(id=int(org_id))
+        all_courses = course_org.course_set.all()
+        return render(request, 'org-detail-course.html', {
+            'all_courses': all_courses,
+            'course_org': course_org
         })
