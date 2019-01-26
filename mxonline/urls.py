@@ -36,8 +36,10 @@ urlpatterns = [
     path('reset/<active_code>/', ResetView.as_view(), name='reset_pwd'),
     path('modify_pwd/', ModifyPwdView.as_view(), name='modify_pwd'),
 
-    # 课程机构url配置
+    # 机构url配置
     path('org/', include('organization.urls', namespace='org')),
+    # 课程url配置
+    path('course/', include('courses.urls', namespace='course')),
 
     # 配置上传文件的访问处理函数
     re_path('media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),

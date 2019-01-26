@@ -16,7 +16,7 @@ class Course(models.Model):
     students = models.IntegerField(default=0, verbose_name=u'学习人数')
     fav_nums = models.IntegerField(default=0, verbose_name=u'收藏人数')
     image = models.ImageField(blank=True, null=True, default='course/201901/default.jpg', upload_to='course/%Y%m', verbose_name=u'封面图', max_length=100)
-    click_num = models.IntegerField(default=0, verbose_name=u'点击数')
+    click_nums = models.IntegerField(default=0, verbose_name=u'点击数')
     add_time = models.DateTimeField(default=datetime.now, verbose_name=u'添加时间')
 
     class Meta:

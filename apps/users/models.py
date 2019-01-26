@@ -1,14 +1,14 @@
-#_*_ encoding:utf-8 _*_
-#python默认包
+# -*- encoding:utf-8 -*-
+# python默认包
 from datetime import datetime
 
-#第三方包
+# 第三方包
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-#用户model，继承于系统默认用户model AbstractUser
 # Create your models here.
+# 用户model，继承于系统默认用户model AbstractUser
 class UserProfile(AbstractUser):
     nick_name = models.CharField(max_length=50, verbose_name=u'昵称', default='')
     birthday = models.DateField(verbose_name=u'生日', null=True, blank=True)
@@ -25,7 +25,7 @@ class UserProfile(AbstractUser):
         return self.username
 
 
-#邮箱验证码model
+# 邮箱验证码model
 class EmailVerifyRecord(models.Model):
     code = models.CharField(max_length=50, verbose_name=u'验证码')
     email = models.EmailField(max_length=50, verbose_name=u'邮箱')
@@ -33,16 +33,16 @@ class EmailVerifyRecord(models.Model):
     send_time = models.DateTimeField(default=datetime.now, verbose_name= '发送时间')
 
     class Meta:
-        #指定这个model类在后台管理系统中显示的名字
+        # 指定这个model类在后台管理系统中显示的名字
         verbose_name = u'邮箱验证码'
-        #指定这个model类的复数形式
+        # 指定这个model类的复数形式
         verbose_name_plural = verbose_name
 
     def __str__(self):
         return '{0}({1})'.format(self.code, self.email)
 
 
-#轮播图验证码model
+# 轮播图验证码model
 class Banner(models.Model):
     title = models.CharField(max_length=100, verbose_name= u'标题')
     image = models.ImageField(upload_to='banner/%Y%m', verbose_name= u'轮播图', max_length=100)
