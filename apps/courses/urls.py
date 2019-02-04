@@ -8,6 +8,6 @@ app_name = 'course'
 
 urlpatterns = [
     # 课程列表页
-    path('list/', CourseListView.as_view(), name='list'),
-    path('detail/<course_id>', CourseDetailView.as_view(), name='detail')
+    path('list/', CourseListView.as_view(), name='course_list'),
+    path('detail/<course_id>', CourseDetailView.as_view(), name='course_detail')
 ]

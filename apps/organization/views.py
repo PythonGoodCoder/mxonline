@@ -11,7 +11,7 @@ from courses.models import Course
 # Create your views here.
 
 
-class OrgView(View):
+class OrgListView(View):
     """
     课程机构列表功能
     """

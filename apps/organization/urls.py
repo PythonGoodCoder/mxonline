@@ -2,13 +2,13 @@
 
 from django.urls import path
 
-from .views import OrgView, AddUserAskView, OrgHomeView, OrgCourseView, OrgDescView, OrgTeacherView, AddFavView
+from .views import OrgListView, AddUserAskView, OrgHomeView, OrgCourseView, OrgDescView, OrgTeacherView, AddFavView
 
 app_name = 'org'
 
 urlpatterns = [
     # 机构列表页
-    path('list/', OrgView.as_view(), name='list'),
+    path('list/', OrgListView.as_view(), name='org_list'),
     path('add_ask/', AddUserAskView.as_view(), name='add_ask'),
     path('home/<org_id>', OrgHomeView.as_view(), name='org_home'),
     path('course/<org_id>', OrgCourseView.as_view(), name='org_course'),
